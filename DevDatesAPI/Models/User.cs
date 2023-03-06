@@ -23,5 +23,5 @@ public record DetailedUserInfo
 {
     public ShortUserInfo ShortInfo { get; set; }
     public string Bio { get; set; }
-    //public Interest[] Interests { get; set; }
+    public Interest[] Interests { get; set; }
 }
