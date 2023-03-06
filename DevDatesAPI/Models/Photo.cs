@@ -2,5 +2,6 @@
 {
     public class Photo
     {
+        public string url { get; set; }
     }
 }
