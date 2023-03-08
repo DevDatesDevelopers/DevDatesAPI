@@ -14,8 +14,7 @@ public record ShortUserInfo
     public string Name { get; set; }
     public int Age { get; set; }
     public string Gender { get; set; }
-    
-    //public SexualPreference[] SexualPreferences { get; set; }
+    public SexualPreference[] SexualPreferences { get; set; }
     public Photo[] Photos { get; set; }
 }
 

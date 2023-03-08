@@ -29,7 +29,33 @@ public class WeatherForecastController : ControllerBase
             {
                 Name = Names[rng.Next(Names.Length)],
                 Age = rng.Next(18, 65),
-                Gender = "Random Gender"
+                Gender = "Random Gender",
+                SexualPreferences = new []
+                {
+                    new SexualPreference()
+                    {
+                        DisplayName = "Men"
+                    },
+                    new SexualPreference()
+                    {
+                        DisplayName = "Women"
+                    }
+                },
+                Photos = new []
+                {
+                    new Photo()
+                    {
+                        url = "https://picsum.photos/200/300"
+                    },
+                    new Photo()
+                    {
+                        url = "https://picsum.photos/200/300"
+                    },
+                    new Photo()
+                    {
+                        url = "https://picsum.photos/200/300"
+                    }
+                }
             }
         };
     }
@@ -46,9 +72,95 @@ public class WeatherForecastController : ControllerBase
                 {
                     Name = Names[rng.Next(Names.Length)],
                     Age = rng.Next(18, 65),
-                    Gender = "Random Gender"
+                    Gender = "Random Gender",
+                    SexualPreferences = new []
+                    {
+                        new SexualPreference()
+                        {
+                            DisplayName = "Men"
+                        },
+                        new SexualPreference()
+                        {
+                            DisplayName = "Women"
+                        }
+                    },
+                    Photos = new []
+                    {
+                        new Photo()
+                        {
+                            url = "https://picsum.photos/200/300"
+                        },
+                        new Photo()
+                        {
+                            url = "https://picsum.photos/200/300"
+                        },
+                        new Photo()
+                        {
+                            url = "https://picsum.photos/200/300"
+                        }
+                    }
                 },
-                Bio = "Random Bio"
+                Bio = "Random Bio",
+                Interests = new Interest[]
+                {
+                    new Interest()
+                    {
+                        DisplayName = "Random Interest",
+                        Photos = new Photo[]
+                        {
+                            new Photo()
+                            {
+                                url = "https://picsum.photos/200/300"
+                            },
+                            new Photo()
+                            {
+                                url = "https://picsum.photos/200/300"
+                            },
+                            new Photo()
+                            {
+                                url = "https://picsum.photos/200/300"
+                            }
+                        }
+                    },
+                    new Interest()
+                    {
+                        DisplayName = "Random Interest 2",
+                        Photos = new Photo[]
+                        {
+                            new Photo()
+                            {
+                                url = "https://picsum.photos/200/300"
+                            },
+                            new Photo()
+                            {
+                                url = "https://picsum.photos/200/300"
+                            },
+                            new Photo()
+                            {
+                                url = "https://picsum.photos/200/300"
+                            }
+                        }
+                    },
+                    new Interest()
+                    {
+                        DisplayName = "Random Interest 3",
+                        Photos = new Photo[]
+                        {
+                            new Photo()
+                            {
+                                url = "https://picsum.photos/200/300"
+                            },
+                            new Photo()
+                            {
+                                url = "https://picsum.photos/200/300"
+                            },
+                            new Photo()
+                            {
+                                url = "https://picsum.photos/200/300"
+                            }
+                        }
+                    }
+                }
             }
         };
     }
@@ -65,9 +177,95 @@ public class WeatherForecastController : ControllerBase
                 {
                     Name = Names[rng.Next(Names.Length)],
                     Age = rng.Next(18, 65),
-                    Gender = "Random Gender"
+                    Gender = "Random Gender",
+                    SexualPreferences = new []
+                    {
+                        new SexualPreference()
+                        {
+                            DisplayName = "Men"
+                        },
+                        new SexualPreference()
+                        {
+                            DisplayName = "Women"
+                        }
+                    },
+                    Photos = new []
+                    {
+                        new Photo()
+                        {
+                            url = "https://picsum.photos/200/300"
+                        },
+                        new Photo()
+                        {
+                            url = "https://picsum.photos/200/300"
+                        },
+                        new Photo()
+                        {
+                            url = "https://picsum.photos/200/300"
+                        }
+                    }
                 },
-                Bio = "Random Bio"
+                Bio = "Random Bio",
+                Interests = new Interest[]
+                {
+                    new Interest()
+                    {
+                        DisplayName = "Random Interest",
+                        Photos = new Photo[]
+                        {
+                            new Photo()
+                            {
+                                url = "https://picsum.photos/200/300"
+                            },
+                            new Photo()
+                            {
+                                url = "https://picsum.photos/200/300"
+                            },
+                            new Photo()
+                            {
+                                url = "https://picsum.photos/200/300"
+                            }
+                        }
+                    },
+                    new Interest()
+                    {
+                        DisplayName = "Random Interest 2",
+                        Photos = new Photo[]
+                        {
+                            new Photo()
+                            {
+                                url = "https://picsum.photos/200/300"
+                            },
+                            new Photo()
+                            {
+                                url = "https://picsum.photos/200/300"
+                            },
+                            new Photo()
+                            {
+                                url = "https://picsum.photos/200/300"
+                            }
+                        }
+                    },
+                    new Interest()
+                    {
+                        DisplayName = "Random Interest 3",
+                        Photos = new Photo[]
+                        {
+                            new Photo()
+                            {
+                                url = "https://picsum.photos/200/300"
+                            },
+                            new Photo()
+                            {
+                                url = "https://picsum.photos/200/300"
+                            },
+                            new Photo()
+                            {
+                                url = "https://picsum.photos/200/300"
+                            }
+                        }
+                    }
+                }
             },
             ConnectedServices = new ConnectedService[]
             {
