@@ -19,7 +19,7 @@ public class UserController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet("{id}", Name = "GetShortUserInfo")]
+    [HttpGet("short/{id}", Name = "GetShortUserInfo")]
     public User Get()
     {
         var rng = new Random();
@@ -60,7 +60,7 @@ public class UserController : ControllerBase
         };
     }
 
-    [HttpGet("{id}", Name = "GetDetailedUserInfo")]
+    [HttpGet("detailed/{id}", Name = "GetDetailedUserInfo")]
     public User GetDetailedInfo()
     {
         var rng = new Random();
@@ -165,7 +165,7 @@ public class UserController : ControllerBase
         };
     }
     
-    [HttpGet("{id}", Name = "GetFullUserInfo")]
+    [HttpGet("full/{id}", Name = "GetFullUserInfo")]
     public User GetFullInfo()
     {
         var rng = new Random();
