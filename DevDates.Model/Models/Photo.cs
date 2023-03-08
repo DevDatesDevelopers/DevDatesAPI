@@ -1,4 +1,4 @@
-﻿namespace DevDatesAPI.Models
+﻿namespace DevDates.Model.Models
 {
     public class Photo
     {

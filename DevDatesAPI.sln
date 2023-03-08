@@ -1,6 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevDatesAPI", "DevDatesAPI\DevDatesAPI.csproj", "{D17AD882-6EE1-4BA1-8003-FF8509EF2B8D}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevDatesAPI", "DevDatesAPI\DevDatesAPI.csproj", "{D17AD882-6EE1-4BA1-8003-FF8509EF2B8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevDates.Model", "DevDates.Model\DevDates.Model.csproj", "{2FD5579F-464F-432B-B0DD-510B636CC921}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +17,15 @@ Global
 		{D17AD882-6EE1-4BA1-8003-FF8509EF2B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D17AD882-6EE1-4BA1-8003-FF8509EF2B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D17AD882-6EE1-4BA1-8003-FF8509EF2B8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FD5579F-464F-432B-B0DD-510B636CC921}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FD5579F-464F-432B-B0DD-510B636CC921}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FD5579F-464F-432B-B0DD-510B636CC921}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FD5579F-464F-432B-B0DD-510B636CC921}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F12B7BC0-D0F1-4B1A-B4B6-46CEE43FFB29}
 	EndGlobalSection
 EndGlobal

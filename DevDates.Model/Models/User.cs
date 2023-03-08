@@ -1,6 +1,4 @@
-﻿using DevDatesAPI.Models;
-
-namespace DevDatesAPI.Models;
+﻿namespace DevDates.Model.Models;
 
 public class User
 {
