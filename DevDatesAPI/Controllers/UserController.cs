@@ -9,7 +9,7 @@ public class UserController : ControllerBase
 {
     private static readonly string[] Names = new[]
     {
-        "Geri Nikol", "Ivan Kalatchev", "Dqdo Sex", "Nasitu"
+        "Geri Nikol", "Ivan Kalatchev", "Niggolay Petrov", "Nasko", "Medarcheto"
     };
 
     private readonly ILogger<UserController> _logger;
