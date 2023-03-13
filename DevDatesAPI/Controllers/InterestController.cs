@@ -6,7 +6,7 @@ namespace DevDatesAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class InterestControllers
+    public class InterestController
     {
         private readonly Interest[] Interests =
         {

@@ -6,9 +6,9 @@ namespace DevDatesAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SexualPreferenceController
+    public class SexualPreferencesController
     {
-        private readonly SexualPreference[] SexualPreference =
+        private readonly SexualPreference[] SexualPreferences =
         {
             new SexualPreference()
             {
@@ -55,7 +55,25 @@ namespace DevDatesAPI.Controllers
         public SexualPreference GetPreference()
         {
             Random rng = new Random();
-            return SexualPreference[rng.Next(SexualPreference.Length)];
+            return SexualPreferences[rng.Next(SexualPreferences.Length)];
+        }
+
+        [HttpDelete("preference/delete/{id}")]
+        public void Delete(int id)
+        {
+            // to do
+        }
+
+        [HttpPost("preference/post/{id}")]
+        public void Post()
+        {
+            // to do
+        }
+
+        [HttpPut("preference/put/{id}")]
+        public void put(int id)
+        {
+            // to do
         }
     }
 }
