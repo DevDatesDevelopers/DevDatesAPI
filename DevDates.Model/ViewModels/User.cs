@@ -1,4 +1,4 @@
-﻿namespace DevDates.Model.Models;
+﻿namespace DevDates.Model.ViewModels;
 
 public class User
 {

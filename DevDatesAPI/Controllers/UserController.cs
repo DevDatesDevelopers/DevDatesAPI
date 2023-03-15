@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using DevDates.Model.Models;
+using DevDates.Model.ViewModels;
 
 namespace DevDatesAPI.Controllers;
 
