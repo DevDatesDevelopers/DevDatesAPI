@@ -45,15 +45,15 @@ public class UserController : ControllerBase
                 {
                     new Photo()
                     {
-                        url = "https://picsum.photos/200/300"
+                        Uri = "https://picsum.photos/200/300"
                     },
                     new Photo()
                     {
-                        url = "https://picsum.photos/200/300"
+                        Uri = "https://picsum.photos/200/300"
                     },
                     new Photo()
                     {
-                        url = "https://picsum.photos/200/300"
+                        Uri = "https://picsum.photos/200/300"
                     }
                 }
             }
@@ -88,15 +88,15 @@ public class UserController : ControllerBase
                     {
                         new Photo()
                         {
-                            url = "https://picsum.photos/200/300"
+                            Uri = "https://picsum.photos/200/300"
                         },
                         new Photo()
                         {
-                            url = "https://picsum.photos/200/300"
+                            Uri = "https://picsum.photos/200/300"
                         },
                         new Photo()
                         {
-                            url = "https://picsum.photos/200/300"
+                            Uri = "https://picsum.photos/200/300"
                         }
                     }
                 },
@@ -110,15 +110,15 @@ public class UserController : ControllerBase
                         {
                             new Photo()
                             {
-                                url = "https://picsum.photos/200/300"
+                                Uri = "https://picsum.photos/200/300"
                             },
                             new Photo()
                             {
-                                url = "https://picsum.photos/200/300"
+                                Uri = "https://picsum.photos/200/300"
                             },
                             new Photo()
                             {
-                                url = "https://picsum.photos/200/300"
+                                Uri = "https://picsum.photos/200/300"
                             }
                         }
                     },
@@ -129,15 +129,15 @@ public class UserController : ControllerBase
                         {
                             new Photo()
                             {
-                                url = "https://picsum.photos/200/300"
+                                Uri = "https://picsum.photos/200/300"
                             },
                             new Photo()
                             {
-                                url = "https://picsum.photos/200/300"
+                                Uri = "https://picsum.photos/200/300"
                             },
                             new Photo()
                             {
-                                url = "https://picsum.photos/200/300"
+                                Uri = "https://picsum.photos/200/300"
                             }
                         }
                     },
@@ -148,15 +148,15 @@ public class UserController : ControllerBase
                         {
                             new Photo()
                             {
-                                url = "https://picsum.photos/200/300"
+                                Uri = "https://picsum.photos/200/300"
                             },
                             new Photo()
                             {
-                                url = "https://picsum.photos/200/300"
+                                Uri = "https://picsum.photos/200/300"
                             },
                             new Photo()
                             {
-                                url = "https://picsum.photos/200/300"
+                                Uri = "https://picsum.photos/200/300"
                             }
                         }
                     }
@@ -193,15 +193,15 @@ public class UserController : ControllerBase
                     {
                         new Photo()
                         {
-                            url = "https://picsum.photos/200/300"
+                            Uri = "https://picsum.photos/200/300"
                         },
                         new Photo()
                         {
-                            url = "https://picsum.photos/200/300"
+                            Uri = "https://picsum.photos/200/300"
                         },
                         new Photo()
                         {
-                            url = "https://picsum.photos/200/300"
+                            Uri = "https://picsum.photos/200/300"
                         }
                     }
                 },
@@ -215,15 +215,15 @@ public class UserController : ControllerBase
                         {
                             new Photo()
                             {
-                                url = "https://picsum.photos/200/300"
+                                Uri = "https://picsum.photos/200/300"
                             },
                             new Photo()
                             {
-                                url = "https://picsum.photos/200/300"
+                                Uri = "https://picsum.photos/200/300"
                             },
                             new Photo()
                             {
-                                url = "https://picsum.photos/200/300"
+                                Uri = "https://picsum.photos/200/300"
                             }
                         }
                     },
@@ -234,15 +234,15 @@ public class UserController : ControllerBase
                         {
                             new Photo()
                             {
-                                url = "https://picsum.photos/200/300"
+                                Uri = "https://picsum.photos/200/300"
                             },
                             new Photo()
                             {
-                                url = "https://picsum.photos/200/300"
+                                Uri = "https://picsum.photos/200/300"
                             },
                             new Photo()
                             {
-                                url = "https://picsum.photos/200/300"
+                                Uri = "https://picsum.photos/200/300"
                             }
                         }
                     },
@@ -253,15 +253,15 @@ public class UserController : ControllerBase
                         {
                             new Photo()
                             {
-                                url = "https://picsum.photos/200/300"
+                                Uri = "https://picsum.photos/200/300"
                             },
                             new Photo()
                             {
-                                url = "https://picsum.photos/200/300"
+                                Uri = "https://picsum.photos/200/300"
                             },
                             new Photo()
                             {
-                                url = "https://picsum.photos/200/300"
+                                Uri = "https://picsum.photos/200/300"
                             }
                         }
                     }
