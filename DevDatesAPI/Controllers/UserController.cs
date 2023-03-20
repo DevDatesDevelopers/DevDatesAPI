@@ -66,25 +66,18 @@ public class UserController : ControllerBase
         var rng = new Random();
         return new User()
         {
-            DetailedInfo = new DetailedUserInfo()
+            ShortInfo = new ShortUserInfo()
             {
-                ShortInfo = new ShortUserInfo()
+                Name = Names[rng.Next(Names.Length)],
+                Age = rng.Next(18, 65),
+                Gender = "Random Gender",
+                SexualPreferences = new []
                 {
-                    Name = Names[rng.Next(Names.Length)],
-                    Age = rng.Next(18, 65),
-                    Gender = "Random Gender",
-                    SexualPreferences = new []
+                    new SexualPreference()
                     {
-                        new SexualPreference()
-                        {
-                            DisplayName = "Men"
-                        },
-                        new SexualPreference()
-                        {
-                            DisplayName = "Women"
-                        }
+                        DisplayName = "Men"
                     },
-                    Photos = new []
+                    new SexualPreference()
                     {
                         new Photo()
                         {
@@ -100,6 +93,24 @@ public class UserController : ControllerBase
                         }
                     }
                 },
+                Photos = new []
+                {
+                    new Photo()
+                    {
+                        url = "https://picsum.photos/200/300"
+                    },
+                    new Photo()
+                    {
+                        url = "https://picsum.photos/200/300"
+                    },
+                    new Photo()
+                    {
+                        url = "https://picsum.photos/200/300"
+                    }
+                }
+            },
+            DetailedInfo = new DetailedUserInfo()
+            {
                 Bio = "Random Bio",
                 Interests = new Interest[]
                 {
@@ -171,25 +182,18 @@ public class UserController : ControllerBase
         var rng = new Random();
         return new User()
         {
-            DetailedInfo = new DetailedUserInfo()
+            ShortInfo = new ShortUserInfo()
             {
-                ShortInfo = new ShortUserInfo()
+                Name = Names[rng.Next(Names.Length)],
+                Age = rng.Next(18, 65),
+                Gender = "Random Gender",
+                SexualPreferences = new []
                 {
-                    Name = Names[rng.Next(Names.Length)],
-                    Age = rng.Next(18, 65),
-                    Gender = "Random Gender",
-                    SexualPreferences = new []
+                    new SexualPreference()
                     {
-                        new SexualPreference()
-                        {
-                            DisplayName = "Men"
-                        },
-                        new SexualPreference()
-                        {
-                            DisplayName = "Women"
-                        }
+                        DisplayName = "Men"
                     },
-                    Photos = new []
+                    new SexualPreference()
                     {
                         new Photo()
                         {
@@ -205,6 +209,24 @@ public class UserController : ControllerBase
                         }
                     }
                 },
+                Photos = new []
+                {
+                    new Photo()
+                    {
+                        url = "https://picsum.photos/200/300"
+                    },
+                    new Photo()
+                    {
+                        url = "https://picsum.photos/200/300"
+                    },
+                    new Photo()
+                    {
+                        url = "https://picsum.photos/200/300"
+                    }
+                }
+            },
+            DetailedInfo = new DetailedUserInfo()
+            {
                 Bio = "Random Bio",
                 Interests = new Interest[]
                 {
