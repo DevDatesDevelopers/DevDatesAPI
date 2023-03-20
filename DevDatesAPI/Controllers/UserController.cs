@@ -1,37 +1,38 @@
 using Microsoft.AspNetCore.Mvc;
 using DevDates.Model.Models;
 
-namespace DevDatesAPI.Controllers;
-
-[ApiController]
-[Route("[controller]")]
-public class UserController : ControllerBase
+namespace DevDatesAPI.Controllers
 {
-    private static readonly string[] Names = new[]
+
+    [ApiController]
+    [Route("[controller]")]
+    public class UserController : ControllerBase
     {
+        private static readonly string[] Names = new[]
+        {
         "Geri Nikol", "Ivan Kalatchev", "Niggolay Petrov", "Nasko", "Medarcheto"
     };
 
-    private readonly ILogger<UserController> _logger;
+        private readonly ILogger<UserController> _logger;
 
-    public UserController(ILogger<UserController> logger)
-    {
-        _logger = logger;
-    }
-
-    [HttpGet("short/{id}", Name = "GetShortUserInfo")]
-    public User Get()
-    {
-        var rng = new Random();
-        return new User()
+        public UserController(ILogger<UserController> logger)
         {
-            ShortInfo = new ShortUserInfo()
+            _logger = logger;
+        }
+
+        [HttpGet("short/{id}", Name = "GetShortUserInfo")]
+        public User Get()
+        {
+            var rng = new Random();
+            return new User()
             {
-                Name = Names[rng.Next(Names.Length)],
-                Age = rng.Next(18, 65),
-                Gender = "Random Gender",
-                SexualPreferences = new []
+                ShortInfo = new ShortUserInfo()
                 {
+                    Name = Names[rng.Next(Names.Length)],
+                    Age = rng.Next(18, 65),
+                    Gender = "Random Gender",
+                    SexualPreferences = new[]
+                    {
                     new SexualPreference()
                     {
                         DisplayName = "Men"
@@ -41,8 +42,8 @@ public class UserController : ControllerBase
                         DisplayName = "Women"
                     }
                 },
-                Photos = new []
-                {
+                    Photos = new[]
+                    {
                     new Photo()
                     {
                         url = "https://picsum.photos/200/300"
@@ -56,25 +57,25 @@ public class UserController : ControllerBase
                         url = "https://picsum.photos/200/300"
                     }
                 }
-            }
-        };
-    }
+                }
+            };
+        }
 
-    [HttpGet("detailed/{id}", Name = "GetDetailedUserInfo")]
-    public User GetDetailedInfo()
-    {
-        var rng = new Random();
-        return new User()
+        [HttpGet("detailed/{id}", Name = "GetDetailedUserInfo")]
+        public User GetDetailedInfo()
         {
-            DetailedInfo = new DetailedUserInfo()
+            var rng = new Random();
+            return new User()
             {
-                ShortInfo = new ShortUserInfo()
+                DetailedInfo = new DetailedUserInfo()
                 {
-                    Name = Names[rng.Next(Names.Length)],
-                    Age = rng.Next(18, 65),
-                    Gender = "Random Gender",
-                    SexualPreferences = new []
+                    ShortInfo = new ShortUserInfo()
                     {
+                        Name = Names[rng.Next(Names.Length)],
+                        Age = rng.Next(18, 65),
+                        Gender = "Random Gender",
+                        SexualPreferences = new[]
+                        {
                         new SexualPreference()
                         {
                             DisplayName = "Men"
@@ -84,8 +85,8 @@ public class UserController : ControllerBase
                             DisplayName = "Women"
                         }
                     },
-                    Photos = new []
-                    {
+                        Photos = new[]
+                        {
                         new Photo()
                         {
                             url = "https://picsum.photos/200/300"
@@ -99,10 +100,10 @@ public class UserController : ControllerBase
                             url = "https://picsum.photos/200/300"
                         }
                     }
-                },
-                Bio = "Random Bio",
-                Interests = new Interest[]
-                {
+                    },
+                    Bio = "Random Bio",
+                    Interests = new Interest[]
+                    {
                     new Interest()
                     {
                         DisplayName = "Random Interest",
@@ -160,26 +161,26 @@ public class UserController : ControllerBase
                             }
                         }
                     }
+                    }
                 }
-            }
-        };
-    }
-    
-    [HttpGet("full/{id}", Name = "GetFullUserInfo")]
-    public User GetFullInfo()
-    {
-        var rng = new Random();
-        return new User()
+            };
+        }
+
+        [HttpGet("full/{id}", Name = "GetFullUserInfo")]
+        public User GetFullInfo()
         {
-            DetailedInfo = new DetailedUserInfo()
+            var rng = new Random();
+            return new User()
             {
-                ShortInfo = new ShortUserInfo()
+                DetailedInfo = new DetailedUserInfo()
                 {
-                    Name = Names[rng.Next(Names.Length)],
-                    Age = rng.Next(18, 65),
-                    Gender = "Random Gender",
-                    SexualPreferences = new []
+                    ShortInfo = new ShortUserInfo()
                     {
+                        Name = Names[rng.Next(Names.Length)],
+                        Age = rng.Next(18, 65),
+                        Gender = "Random Gender",
+                        SexualPreferences = new[]
+                        {
                         new SexualPreference()
                         {
                             DisplayName = "Men"
@@ -189,8 +190,8 @@ public class UserController : ControllerBase
                             DisplayName = "Women"
                         }
                     },
-                    Photos = new []
-                    {
+                        Photos = new[]
+                        {
                         new Photo()
                         {
                             url = "https://picsum.photos/200/300"
@@ -204,10 +205,10 @@ public class UserController : ControllerBase
                             url = "https://picsum.photos/200/300"
                         }
                     }
-                },
-                Bio = "Random Bio",
-                Interests = new Interest[]
-                {
+                    },
+                    Bio = "Random Bio",
+                    Interests = new Interest[]
+                    {
                     new Interest()
                     {
                         DisplayName = "Random Interest",
@@ -265,10 +266,10 @@ public class UserController : ControllerBase
                             }
                         }
                     }
-                }
-            },
-            ConnectedServices = new ConnectedService[]
-            {
+                    }
+                },
+                ConnectedServices = new ConnectedService[]
+                {
                 new ConnectedService()
                 {
                     Name = "Facebook",
@@ -284,7 +285,8 @@ public class UserController : ControllerBase
                     Name = "Instagram",
                     Url = "https://www.instagram.com/"
                 }
-            }
-        };
+                }
+            };
+        }
     }
 }
