@@ -1,4 +1,4 @@
-﻿namespace DevDates.Model.Models;
+﻿namespace DevDates.Model;
 
 public class User
 {
@@ -18,7 +18,6 @@ public record ShortUserInfo
 
 public record DetailedUserInfo
 {
-    public ShortUserInfo ShortInfo { get; set; }
     public string Bio { get; set; }
     public Interest[] Interests { get; set; }
 }

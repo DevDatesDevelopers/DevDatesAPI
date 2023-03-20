@@ -1,4 +1,4 @@
-﻿using DevDates.Model.Models;
+﻿using DevDates.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 

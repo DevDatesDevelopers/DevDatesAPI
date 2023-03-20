@@ -1,6 +1,6 @@
-﻿namespace DevDates.Model.Models;
+﻿namespace DevDates.Model;
 
-public class ConnectedService
+public record ConnectedService
 {
     public string Name { get; set; }
     public string Url { get; set; }
