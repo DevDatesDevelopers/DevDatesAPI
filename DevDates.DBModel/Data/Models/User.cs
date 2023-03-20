@@ -31,7 +31,7 @@ public class User
 
     public virtual ICollection<UsersPreference> UsersPreferences { get; } = new List<UsersPreference>();
 
-    public virtual ICollection<Interest> Interests { get; } = new List<Interest>();
+    public virtual ICollection<Interest> Interests { get; set; } = new List<Interest>();
 
     public virtual ICollection<Resource> Resources { get; } = new List<Resource>();
 }

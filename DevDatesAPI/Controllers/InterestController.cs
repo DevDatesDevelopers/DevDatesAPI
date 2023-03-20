@@ -1,4 +1,5 @@
-﻿using DevDates.Model;
+﻿using DevDates.DBModel.Data;
+using DevDates.Model.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 
@@ -8,72 +9,37 @@ namespace DevDatesAPI.Controllers
     [Route("[controller]")]
     public class InterestController
     {
-        private readonly Interest[] Interests =
+        private DevDatesDbContext _context;
+        public InterestController(DevDatesDbContext context)
         {
-            new Interest()
-                    {
-                        DisplayName = "Random Interest",
-                        Photos = new Photo[]
-                        {
-                            new Photo()
-                            {
-                                url = "https://picsum.photos/200/300"
-                            },
-                            new Photo()
-                            {
-                                url = "https://picsum.photos/200/300"
-                            },
-                            new Photo()
-                            {
-                                url = "https://picsum.photos/200/300"
-                            }
-                        }
-                    },
-                    new Interest()
-                    {
-                        DisplayName = "Random Interest 2",
-                        Photos = new Photo[]
-                        {
-                            new Photo()
-                            {
-                                url = "https://picsum.photos/200/300"
-                            },
-                            new Photo()
-                            {
-                                url = "https://picsum.photos/200/300"
-                            },
-                            new Photo()
-                            {
-                                url = "https://picsum.photos/200/300"
-                            }
-                        }
-                    },
-                    new Interest()
-                    {
-                        DisplayName = "Random Interest 3",
-                        Photos = new Photo[]
-                        {
-                            new Photo()
-                            {
-                                url = "https://picsum.photos/200/300"
-                            },
-                            new Photo()
-                            {
-                                url = "https://picsum.photos/200/300"
-                            },
-                            new Photo()
-                            {
-                                url = "https://picsum.photos/200/300"
-                            }
-                        }
-                    }
-        };
-
+            _context = context;
+        }
+        
+        [HttpGet("interests", Name = "GetAllInterests")]
+        public Interest[] GetAllInterests()
+        {
+            return _context.Interests.Select(i => new Interest()
+            {
+                DisplayName = i.DisplayName,
+                Photos = i.Resources.Select(r => new Photo()
+                {
+                    Uri = r.ResourceUri
+                }).ToArray()
+            }).ToArray();
+        }
+        
+        
         [HttpGet("interests/{id}", Name= "GetInterestsInfo")]
-        public Interest GetInterestsInfo()
+        public Interest GetInterestsInfo(int id)
         {
-            Random rng = new Random();
-            return Interests[rng.Next(Interests.Length)];
+            return _context.Interests.Where(i => i.Id == id).Select(i => new Interest()
+            {
+                DisplayName = i.DisplayName,
+                Photos = i.Resources.Select(r => new Photo()
+                {
+                    Uri = r.ResourceUri
+                }).ToArray()
+            }).ToArray()[0];
         }
     }
 }

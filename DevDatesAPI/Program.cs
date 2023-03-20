@@ -1,3 +1,4 @@
+using DevDates.DBModel.Data;
 using DevDatesAPI;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(bl => {
     bl.AddProfile(new MappingProfile());
 });
+
+builder.Services.AddDbContext<DevDatesDbContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

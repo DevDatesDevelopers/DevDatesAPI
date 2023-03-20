@@ -1,5 +1,9 @@
+using DevDates.DBModel.Data;
+using DevDates.DBModel.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using DevDates.Model.ViewModels;
+using Interest = DevDates.Model.ViewModels.Interest;
+using User = DevDates.Model.ViewModels.User;
 
 namespace DevDatesAPI.Controllers;
 
@@ -7,306 +11,143 @@ namespace DevDatesAPI.Controllers;
 [Route("[controller]")]
 public class UserController : ControllerBase
 {
-    private static readonly string[] Names = new[]
-    {
-        "Geri Nikol", "Ivan Kalatchev", "Niggolay Petrov", "Nasko", "Medarcheto"
-    };
-
     private readonly ILogger<UserController> _logger;
+    private DevDatesDbContext _context;
 
-    public UserController(ILogger<UserController> logger)
+    public UserController(ILogger<UserController> logger, DevDatesDbContext context)
     {
         _logger = logger;
+        _context = context;
     }
 
     [HttpGet("short/{id}", Name = "GetShortUserInfo")]
-    public User Get()
+    public User Get(int id)
     {
-        var rng = new Random();
-        return new User()
+        return _context.Users.Where(u => u.Id == id).Select(u => new DevDates.Model.ViewModels.User()
         {
             ShortInfo = new ShortUserInfo()
             {
-                Name = Names[rng.Next(Names.Length)],
-                Age = rng.Next(18, 65),
-                Gender = "Random Gender",
-                SexualPreferences = new []
+                Age = DateTime.Now.Year - u.DateOfBirth.Value.Year,
+                Gender = u.Gender.DisplayName,
+                Name = u.Name,
+                Photos = u.Resources.Where(r => r.ResourceType.DisplayName == "Photo").Select(r => new Photo()
                 {
-                    new SexualPreference()
-                    {
-                        DisplayName = "Men"
-                    },
-                    new SexualPreference()
-                    {
-                        DisplayName = "Women"
-                    }
-                },
-                Photos = new []
+                    Uri = r.ResourceUri
+                }).ToArray(),
+                SexualPreferences = u.UsersPreferences.Select(up => new SexualPreference()
                 {
-                    new Photo()
+                    DisplayName = up.Gender.DisplayName,
+                    Photo = new Photo()
                     {
-                        Uri = "https://picsum.photos/200/300"
-                    },
-                    new Photo()
-                    {
-                        Uri = "https://picsum.photos/200/300"
-                    },
-                    new Photo()
-                    {
-                        Uri = "https://picsum.photos/200/300"
+                        Uri = up.Gender.Resources.Where(r => r.ResourceType.DisplayName == "Photo").Select(r => r.ResourceUri).First()
                     }
-                }
+                }).ToArray()
             }
-        };
+        }).First();
     }
 
     [HttpGet("detailed/{id}", Name = "GetDetailedUserInfo")]
-    public User GetDetailedInfo()
+    public User GetDetailedInfo(int id)
     {
-        var rng = new Random();
-        return new User()
+        return _context.Users.Where(u => u.Id == id).Select(u => new DevDates.Model.ViewModels.User()
         {
             ShortInfo = new ShortUserInfo()
             {
-                Name = Names[rng.Next(Names.Length)],
-                Age = rng.Next(18, 65),
-                Gender = "Random Gender",
-                SexualPreferences = new []
+                Age = DateTime.Now.Year - u.DateOfBirth.Value.Year,
+                Gender = u.Gender.DisplayName,
+                Name = u.Name,
+                Photos = u.Resources.Where(r => r.ResourceType.DisplayName == "Photo").Select(r => new Photo()
                 {
-                    new SexualPreference()
-                    {
-                        DisplayName = "Men"
-                    },
-                    new SexualPreference()
-                    {
-                        new Photo()
-                        {
-                            Uri = "https://picsum.photos/200/300"
-                        },
-                        new Photo()
-                        {
-                            Uri = "https://picsum.photos/200/300"
-                        },
-                        new Photo()
-                        {
-                            Uri = "https://picsum.photos/200/300"
-                        }
-                    }
-                },
-                Photos = new []
+                    Uri = r.ResourceUri
+                }).ToArray(),
+                SexualPreferences = u.UsersPreferences.Select(up => new SexualPreference()
                 {
-                    new Photo()
+                    DisplayName = up.Gender.DisplayName,
+                    Photo = new Photo()
                     {
-                        url = "https://picsum.photos/200/300"
-                    },
-                    new Photo()
-                    {
-                        url = "https://picsum.photos/200/300"
-                    },
-                    new Photo()
-                    {
-                        url = "https://picsum.photos/200/300"
+                        Uri = up.Gender.Resources.Where(r => r.ResourceType.DisplayName == "Photo").Select(r => r.ResourceUri).First()
                     }
-                }
+                }).ToArray()
             },
             DetailedInfo = new DetailedUserInfo()
             {
-                Bio = "Random Bio",
-                Interests = new Interest[]
+                Bio = u.Bio,
+                Interests = u.Interests.Select(i => new Interest()
                 {
-                    new Interest()
+                    DisplayName = i.DisplayName,
+                    Photos = i.Resources.Where(r => r.ResourceType.DisplayName == "Photo").Select(r => new Photo()
                     {
-                        DisplayName = "Random Interest",
-                        Photos = new Photo[]
-                        {
-                            new Photo()
-                            {
-                                Uri = "https://picsum.photos/200/300"
-                            },
-                            new Photo()
-                            {
-                                Uri = "https://picsum.photos/200/300"
-                            },
-                            new Photo()
-                            {
-                                Uri = "https://picsum.photos/200/300"
-                            }
-                        }
-                    },
-                    new Interest()
-                    {
-                        DisplayName = "Random Interest 2",
-                        Photos = new Photo[]
-                        {
-                            new Photo()
-                            {
-                                Uri = "https://picsum.photos/200/300"
-                            },
-                            new Photo()
-                            {
-                                Uri = "https://picsum.photos/200/300"
-                            },
-                            new Photo()
-                            {
-                                Uri = "https://picsum.photos/200/300"
-                            }
-                        }
-                    },
-                    new Interest()
-                    {
-                        DisplayName = "Random Interest 3",
-                        Photos = new Photo[]
-                        {
-                            new Photo()
-                            {
-                                Uri = "https://picsum.photos/200/300"
-                            },
-                            new Photo()
-                            {
-                                Uri = "https://picsum.photos/200/300"
-                            },
-                            new Photo()
-                            {
-                                Uri = "https://picsum.photos/200/300"
-                            }
-                        }
-                    }
-                }
+                        Uri = r.ResourceUri
+                    }).ToArray()
+                }).ToArray(),
             }
-        };
+        }).First();
     }
     
     [HttpGet("full/{id}", Name = "GetFullUserInfo")]
-    public User GetFullInfo()
+    public User GetFullInfo(int id)
     {
-        var rng = new Random();
-        return new User()
+        return _context.Users.Where(u => u.Id == id).Select(u => new DevDates.Model.ViewModels.User()
         {
             ShortInfo = new ShortUserInfo()
             {
-                Name = Names[rng.Next(Names.Length)],
-                Age = rng.Next(18, 65),
-                Gender = "Random Gender",
-                SexualPreferences = new []
+                Age = DateTime.Now.Year - u.DateOfBirth.Value.Year,
+                Gender = u.Gender.DisplayName,
+                Name = u.Name,
+                Photos = u.Resources.Where(r => r.ResourceType.DisplayName == "Photo").Select(r => new Photo()
                 {
-                    new SexualPreference()
-                    {
-                        DisplayName = "Men"
-                    },
-                    new SexualPreference()
-                    {
-                        new Photo()
-                        {
-                            Uri = "https://picsum.photos/200/300"
-                        },
-                        new Photo()
-                        {
-                            Uri = "https://picsum.photos/200/300"
-                        },
-                        new Photo()
-                        {
-                            Uri = "https://picsum.photos/200/300"
-                        }
-                    }
-                },
-                Photos = new []
+                    Uri = r.ResourceUri
+                }).ToArray(),
+                SexualPreferences = u.UsersPreferences.Select(up => new SexualPreference()
                 {
-                    new Photo()
+                    DisplayName = up.Gender.DisplayName,
+                    Photo = new Photo()
                     {
-                        url = "https://picsum.photos/200/300"
-                    },
-                    new Photo()
-                    {
-                        url = "https://picsum.photos/200/300"
-                    },
-                    new Photo()
-                    {
-                        url = "https://picsum.photos/200/300"
+                        Uri = up.Gender.Resources.Where(r => r.ResourceType.DisplayName == "Photo").Select(r => r.ResourceUri).First()
                     }
-                }
+                }).ToArray()
             },
             DetailedInfo = new DetailedUserInfo()
             {
-                Bio = "Random Bio",
-                Interests = new Interest[]
+                Bio = u.Bio,
+                Interests = u.Interests.Select(i => new Interest()
                 {
-                    new Interest()
+                    DisplayName = i.DisplayName,
+                    Photos = i.Resources.Where(r => r.ResourceType.DisplayName == "Photo").Select(r => new Photo()
                     {
-                        DisplayName = "Random Interest",
-                        Photos = new Photo[]
-                        {
-                            new Photo()
-                            {
-                                Uri = "https://picsum.photos/200/300"
-                            },
-                            new Photo()
-                            {
-                                Uri = "https://picsum.photos/200/300"
-                            },
-                            new Photo()
-                            {
-                                Uri = "https://picsum.photos/200/300"
-                            }
-                        }
-                    },
-                    new Interest()
-                    {
-                        DisplayName = "Random Interest 2",
-                        Photos = new Photo[]
-                        {
-                            new Photo()
-                            {
-                                Uri = "https://picsum.photos/200/300"
-                            },
-                            new Photo()
-                            {
-                                Uri = "https://picsum.photos/200/300"
-                            },
-                            new Photo()
-                            {
-                                Uri = "https://picsum.photos/200/300"
-                            }
-                        }
-                    },
-                    new Interest()
-                    {
-                        DisplayName = "Random Interest 3",
-                        Photos = new Photo[]
-                        {
-                            new Photo()
-                            {
-                                Uri = "https://picsum.photos/200/300"
-                            },
-                            new Photo()
-                            {
-                                Uri = "https://picsum.photos/200/300"
-                            },
-                            new Photo()
-                            {
-                                Uri = "https://picsum.photos/200/300"
-                            }
-                        }
-                    }
-                }
+                        Uri = r.ResourceUri
+                    }).ToArray()
+                }).ToArray(),
             },
-            ConnectedServices = new ConnectedService[]
+            ConnectedServices = u.Resources.Where(r => r.ResourceType.DisplayName == "ConnectedService").Select(r => new ConnectedService()
             {
-                new ConnectedService()
-                {
-                    Name = "Facebook",
-                    Url = "https://www.facebook.com/"
-                },
-                new ConnectedService()
-                {
-                    Name = "Twitter",
-                    Url = "https://twitter.com/"
-                },
-                new ConnectedService()
-                {
-                    Name = "Instagram",
-                    Url = "https://www.instagram.com/"
-                }
-            }
-        };
+                Name = r.ResourceType.DisplayName,
+                Url = r.ResourceUri
+            }).ToArray()
+        }).First();
     }
+    
+    [HttpPost("update/{id}", Name = "UpdateUserInfo")]
+    public void UpdateUser(int id,[FromBody] User user)
+    {
+        var dbUser = _context.Users.First(u => u.Id == id);
+        dbUser.Name = user.ShortInfo.Name;
+        dbUser.Bio = user.DetailedInfo.Bio;
+        _context.SaveChanges();
+    }
+    
+    [HttpPost("addPhoto/{id}", Name = "AddPhoto")]
+    public void AddPhoto(int id,[FromBody] Photo photo)
+    {
+        var dbUser = _context.Users.First(u => u.Id == id);
+        var photoResource = new Resource()
+        {
+            ResourceUri = photo.Uri,
+            ResourceType = _context.ResourcesTypes.First(rt => rt.DisplayName == "Photo")
+        };
+        dbUser.Resources.Add(photoResource);
+        _context.SaveChanges();
+    }
+    
+    
 }
