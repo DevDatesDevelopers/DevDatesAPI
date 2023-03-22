@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevDates.Model", "DevDates.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wrapper", "Wrapper\Wrapper.csproj", "{9E27A2E5-7AB0-4C43-9F31-5CAE78EC1A1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevDates API Wrapper", "DevDates API Wrapper\DevDates API Wrapper.csproj", "{BA513A6A-18E9-41F6-A1EB-B026D2041CE1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevDates.DBModel", "DevDates.DBModel\DevDates.DBModel.csproj", "{59BD3631-3C1A-4487-9CE6-36B8E1CC36FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +33,10 @@ Global
 		{BA513A6A-18E9-41F6-A1EB-B026D2041CE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA513A6A-18E9-41F6-A1EB-B026D2041CE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA513A6A-18E9-41F6-A1EB-B026D2041CE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59BD3631-3C1A-4487-9CE6-36B8E1CC36FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59BD3631-3C1A-4487-9CE6-36B8E1CC36FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59BD3631-3C1A-4487-9CE6-36B8E1CC36FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59BD3631-3C1A-4487-9CE6-36B8E1CC36FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
