@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Xml.Linq;
 using DevDates.DBModel.Data;
+using DevDates.DBModel.Data.Models;
 
 namespace DevDatesAPI.Controllers
 {
@@ -36,19 +37,24 @@ namespace DevDatesAPI.Controllers
         [HttpDelete("preference/delete/{id}")]
         public void Delete(int id)
         {
-            // TODO
+            var context = _context.Genders.Where(g => g.Id == id);
+
+            _context.Remove(context);
+            _context.SaveChanges();
         }
 
         [HttpPost("preference/post/{id}")]
         public void Post()
         {
+            //var context = _context.Genders.Find(g => g.Id == id);
             // TODO
         }
 
         [HttpPut("preference/put/{id}")]
-        public void put(int id)
+        public void put(int id, [FromBody] SexualPreference preference)
         {
-            // TODO
+            //var context = _context.Genders.Find(g => g.Id == id);
+            //TODO
         }
     }
 }
