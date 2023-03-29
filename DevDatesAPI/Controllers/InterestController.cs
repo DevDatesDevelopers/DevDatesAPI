@@ -41,5 +41,7 @@ namespace DevDatesAPI.Controllers
                 }).ToArray()
             }).ToArray()[0];
         }
+
+
     }
 }
