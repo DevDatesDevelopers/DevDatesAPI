@@ -85,3 +85,9 @@ class Program
         }
     }
 }
+
+
+//Access to the specified database with appropriate permissions to create tables and insert data.
+//The required tables Genders and Users exist in the specified database with the required columns.
+//A valid connection string to a Microsoft SQL Server database.fied database with the required columns.
+//The necessary .NET libraries are installed and available on your system to compile and run the code.
