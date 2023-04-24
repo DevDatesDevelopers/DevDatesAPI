@@ -33,7 +33,7 @@ class Program
         {
             try
             {
-                await using var command = new SqlCommand("INSERT INTO Genders (DisplayName, Created, Modified, ModifiedBy) VALUES (@displayName, GETDATE(), GETDATE(), 'Admin')", connection);
+                await using var command = new SqlCommand("INSERT INTO Genders (Id, DisplayName, Created, Modified, ModifiedBy) VALUES (@displayName, GETDATE(), GETDATE(), 'Admin')", connection);
                 command.Parameters.AddWithValue("@displayName", gender.Gender);
                 await command.ExecuteNonQueryAsync();
                 Console.WriteLine($"Inserted gender {gender.Gender}");
@@ -69,7 +69,7 @@ class Program
 
             try
             {
-                await using var command = new SqlCommand("INSERT INTO Users (Name, DateOfBirth, GenderId, Bio, Email, Created, Modified, ModifiedBy) VALUES (@name, @dob, @genderId, @bio, @email, GETDATE(), GETDATE(), 'Admin')", connection);
+                await using var command = new SqlCommand("INSERT INTO Users (Id, Name, DateOfBirth, GenderId, Bio, Email, Created, Modified, ModifiedBy) VALUES (@name, @dob, @genderId, @bio, @email, GETDATE(), GETDATE(), 'Admin')", connection);
                 command.Parameters.AddWithValue("@name", name);
                 command.Parameters.AddWithValue("@dob", dob);
                 command.Parameters.AddWithValue("@genderId", genderId);
