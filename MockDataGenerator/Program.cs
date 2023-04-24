@@ -87,6 +87,8 @@ class Program
 }
 
 
+//Check these
+
 //Access to the specified database with appropriate permissions to create tables and insert data.
 //The required tables Genders and Users exist in the specified database with the required columns.
 //A valid connection string to a Microsoft SQL Server database.fied database with the required columns.
