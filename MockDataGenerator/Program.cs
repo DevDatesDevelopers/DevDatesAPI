@@ -331,6 +331,138 @@ class Program
             }
         }
     }
+    static async System.Threading.Tasks.Task InsertGenderResources(SqlConnection connection)
+    {
+        var genders = new List<Guid>();
+
+        await using (var command = new SqlCommand("SELECT Id FROM Genders", connection))
+        {
+            await using var reader = await command.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                genders.Add(reader.GetGuid(0));
+            }
+        }
+
+        var resourcesId = new List<Guid>();
+
+        await using (var command = new SqlCommand("SELECT Id FROM Resources", connection))
+        {
+            await using var reader = await command.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                resourcesId.Add(reader.GetGuid(0));
+            }
+        }
+
+        var faker = new Faker();
+        for (int i = 0; i < 10; i++)
+        {
+            var genderId = faker.Random.ArrayElement(genders.ToArray());
+            var resourceId = faker.Random.ArrayElement(resourcesId.ToArray());
+           
+            try
+            {
+                await using var command = new SqlCommand("INSERT INTO ResourcesTypes (GenderId, ResourceId, ResourceTypeId) VALUES (@id, @resourceId)", connection);
+                command.Parameters.AddWithValue("@id", genderId);
+                command.Parameters.AddWithValue("@resourceId", resourceId);
+                await command.ExecuteNonQueryAsync();
+                Console.WriteLine($"Inserted users resources.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+    }
+    static async System.Threading.Tasks.Task InsertUserPreferences(SqlConnection connection)
+    {
+        var users = new List<Guid>();
+
+        await using (var command = new SqlCommand("SELECT Id FROM Users", connection))
+        {
+            await using var reader = await command.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                users.Add(reader.GetGuid(0));
+            }
+        }
+
+        var gendersId = new List<Guid>();
+
+        await using (var command = new SqlCommand("SELECT Id FROM Genders", connection))
+        {
+            await using var reader = await command.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                gendersId.Add(reader.GetGuid(0));
+            }
+        }
+
+        var faker = new Faker();
+        for (int i = 0; i < 10; i++)
+        {
+            var userId = faker.Random.ArrayElement(users.ToArray());
+            var genderId = faker.Random.ArrayElement(gendersId.ToArray());
+
+            try
+            {
+                await using var command = new SqlCommand("INSERT INTO ResourcesTypes (UserId, GenderId, ResourceTypeId) VALUES (@id, @genderId)", connection);
+                command.Parameters.AddWithValue("@id", userId);
+                command.Parameters.AddWithValue("@genderId", genderId);
+                await command.ExecuteNonQueryAsync();
+                Console.WriteLine($"Inserted users resources.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+    }
+    static async System.Threading.Tasks.Task InsertUsersInterests(SqlConnection connection)
+    {
+        var users = new List<Guid>();
+
+        await using (var command = new SqlCommand("SELECT Id FROM Users", connection))
+        {
+            await using var reader = await command.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                users.Add(reader.GetGuid(0));
+            }
+        }
+
+        var interestsId = new List<Guid>();
+
+        await using (var command = new SqlCommand("SELECT Id FROM Interests", connection))
+        {
+            await using var reader = await command.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                interestsId.Add(reader.GetGuid(0));
+            }
+        }
+
+        var faker = new Faker();
+        for (int i = 0; i < 10; i++)
+        {
+            var userId = faker.Random.ArrayElement(users.ToArray());
+            var interestId = faker.Random.ArrayElement(interestsId.ToArray());
+
+            try
+            {
+                await using var command = new SqlCommand("INSERT INTO ResourcesTypes (GenderId, ResourceId, ResourceTypeId) VALUES (@id, @resourceId)", connection);
+                command.Parameters.AddWithValue("@id", userId);
+                command.Parameters.AddWithValue("@resourceId", interestId);
+                await command.ExecuteNonQueryAsync();
+                Console.WriteLine($"Inserted users resources.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+    }
 }
 
 
