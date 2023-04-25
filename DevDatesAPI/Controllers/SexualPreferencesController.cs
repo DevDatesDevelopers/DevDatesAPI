@@ -36,19 +36,34 @@ namespace DevDatesAPI.Controllers
         [HttpDelete("preference/delete/{id}")]
         public void Delete(int id)
         {
-            // TODO
+            var preference = _context.Genders.FirstOrDefault(p => p.Id == id);
+            if (preference != null)
+            {
+                _context.Genders.Remove(preference);
+                _context.SaveChanges();
+            }
         }
 
         [HttpPost("preference/post/{id}")]
-        public void Post()
+        public void Post([FromBody] SexualPreference preference)
         {
-            // TODO
+            if (preference != null)
+            {
+                var newPreference = new Gender { DisplayName = preference.DisplayName };
+                _context.Genders.Add(newPreference);
+                _context.SaveChanges();
+            }
         }
 
         [HttpPut("preference/put/{id}")]
-        public void put(int id)
+        public void Put(int id, [FromBody] SexualPreference preference)
         {
-            // TODO
+            var existingPreference = _context.Genders.FirstOrDefault(p => p.Id == id);
+            if (existingPreference != null && preference != null)
+            {
+                existingPreference.DisplayName = preference.DisplayName;
+                _context.SaveChanges();
+            }
         }
     }
 }
