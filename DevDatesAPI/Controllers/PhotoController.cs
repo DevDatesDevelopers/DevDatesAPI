@@ -16,28 +16,27 @@ namespace DevDatesAPI.Controllers
         }
 
         [HttpGet("{userId}/photos", Name = "GetUserPhotos")]
-        public ActionResult<UserPhotosViewModel> GetUserPhotos(int userId)
+        public ActionResult<List<Photo>> GetUserPhotos(int userId)
         {
-        var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId);
 
-        if (user == null)
-        {
-            return NotFound();
-        }
-
-        var viewModel = new UserPhotosViewModel
-        {
-            UserId = userId,
-            Photos = user.Photos.Select(p => new PhotoViewModel
+            if (user == null)
             {
-                Id = p.Id,
-                Url = p.Url,
-                Description = p.Description
-            }).ToList()
-        };
+                return NotFound();
+            }
 
-        return Ok(viewModel);
+            var photos = user.Resources
+                .Where(r => r.ResourceUri.EndsWith(".jpg") || r.ResourceUri.EndsWith(".jpeg") || r.ResourceUri.EndsWith(".png") || r.ResourceUri.EndsWith(".gif"))
+                .Select(r => new Photo
+                {
+                    Id = r.Id,
+                    Url = r.ResourceUri,
+                })
+                .ToList();
+
+            return Ok(photos);
         }
+
 
         [HttpDelete("photos/delete/{id}")]
         public void Delete(int id)
@@ -58,5 +57,3 @@ namespace DevDatesAPI.Controllers
         }
     }
 }
-
-

@@ -5,6 +5,8 @@
     /// </summary>
     public class Photo
     {
-        public string Uri { get; set; }
+        public object Id { get; set; }
+        public string Url { get; set; }
+        public object Description { get; set; }
     }
 }
