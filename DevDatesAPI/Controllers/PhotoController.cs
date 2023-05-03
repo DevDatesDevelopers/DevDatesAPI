@@ -28,9 +28,8 @@ namespace DevDatesAPI.Controllers
             var photos = user.Resources
                 .Where(r => r.ResourceUri.EndsWith(".jpg") || r.ResourceUri.EndsWith(".jpeg") || r.ResourceUri.EndsWith(".png") || r.ResourceUri.EndsWith(".gif"))
                 .Select(r => new Photo
-                {
-                    Id = r.Id,
-                    Url = r.ResourceUri,
+                {           
+                    Uri = r.ResourceUri,
                 })
                 .ToList();
 
