@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 using Bogus;
 using DevDates.Model.ViewModels;
+using Microsoft.VisualBasic;
 
 class Program
 {
@@ -17,6 +19,16 @@ class Program
 
         await InsertGenders(connection);
         await InsertUsers(connection);
+
+        // Add
+        await InsertResourcesTypes(connection);
+        await InsertResources(connection);
+        await InsertInterests(connection);
+        await InterestsResources(connection);
+        await InterestsUsersResources(connection);
+        await InsertGenderResources(connection);
+        await InsertUserPreferences(connection);
+        await InsertUsersInterests(connection);
 
         Console.WriteLine("Finished generating mock data");
     }
