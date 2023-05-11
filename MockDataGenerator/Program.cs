@@ -15,18 +15,11 @@ class Program
 
         Console.WriteLine("Connected to the database");
 
-        InsertUserInterest(context);
+        
 
 
         // Add
-        await InsertResourcesTypes(connection);
-        await InsertResources(connection);
-        await InsertInterests(connection);
-        await InterestsResources(connection);
-        await InterestsUsersResources(connection);
-        await InsertGenderResources(connection);
-        await InsertUserPreferences(connection);
-        await InsertUsersInterests(connection);
+       
 
         Console.WriteLine("Finished generating mock data");
     }
@@ -102,7 +95,7 @@ class Program
 
     }
 
-    static void InsertUserInterest(DevDates.DBModel.Data.DevDatesDbContext context)
+   /* static void InsertUserInterest(DevDates.DBModel.Data.DevDatesDbContext context)
     {
         List<DevDates.DBModel.Data.Models.User> interests = new List<DevDates.DBModel.Data.Models.UsersPreference>();
         interests.Add(new DevDates.DBModel.Data.Models.UsersPreference { UserId = 1, GenderId = 1 });
@@ -121,7 +114,7 @@ class Program
             }
         }
 
-    }
+    }*/
 }
 
 
