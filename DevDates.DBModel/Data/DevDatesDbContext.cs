@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DevDates.DBModel.Data;
 
-public class DevDatesDbContext : DbContext
+public partial class DevDatesDbContext : DbContext
 {
     public DevDatesDbContext()
     {
@@ -30,9 +30,11 @@ public class DevDatesDbContext : DbContext
 
     public virtual DbSet<UsersPreference> UsersPreferences { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=tcp:devdates.database.windows.net,1433;Initial Catalog=DevDatesDB;Persist Security Info=False;User ID=master;Password=DevKristian1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
+    { 
+        optionsBuilder.UseSqlServer("Server=tcp:devdates.database.windows.net,1433;Initial Catalog=DevDatesDB;Persist Security Info=False;User ID=master;Password=DevKristian1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+        optionsBuilder.EnableSensitiveDataLogging();
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -40,7 +42,7 @@ public class DevDatesDbContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__Genders__3214EC07DA6BD736");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
             entity.Property(e => e.Created).HasColumnType("datetime");
             entity.Property(e => e.DisplayName)
                 .HasMaxLength(255)
@@ -72,7 +74,7 @@ public class DevDatesDbContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__Interest__3214EC07357635C6");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
             entity.Property(e => e.Created).HasColumnType("datetime");
             entity.Property(e => e.DisplayName)
                 .HasMaxLength(255)
@@ -121,7 +123,7 @@ public class DevDatesDbContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__Resource__3214EC071098848C");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
             entity.Property(e => e.ResourceUri)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -136,7 +138,7 @@ public class DevDatesDbContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__Resource__3214EC07FF85144A");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
             entity.Property(e => e.Created).HasColumnType("datetime");
             entity.Property(e => e.DisplayName)
                 .HasMaxLength(255)
@@ -151,7 +153,7 @@ public class DevDatesDbContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__Users__3214EC076D009CCD");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
             entity.Property(e => e.Bio)
                 .HasMaxLength(255)
                 .IsUnicode(false);
@@ -224,8 +226,9 @@ public class DevDatesDbContext : DbContext
                 .HasConstraintName("FK__UsersPref__UserI__30C33EC3");
         });
 
-        OnModelCreating(modelBuilder);
+        OnModelCreatingPartial(modelBuilder);
     }
 
-
+    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
+

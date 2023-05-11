@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DevDates.DBModel.Data.Models;
 
@@ -10,7 +11,7 @@ public class User
     public string? Name { get; set; }
 
     public DateTime? DateOfBirth { get; set; }
-
+   // [ForeignKey()]
     public int? GenderId { get; set; }
 
     public string? Bio { get; set; }
@@ -22,6 +23,7 @@ public class User
     public DateTime? Modified { get; set; }
 
     public string? ModifiedBy { get; set; }
+    
 
     public virtual Gender? Gender { get; set; }
 
