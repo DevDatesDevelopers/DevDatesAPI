@@ -1,7 +1,9 @@
-using DevDates.Model.ViewModels;
+using DevDates.DBModel.Data.Models;
 using DevDates.DBModel.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Collections.Generic;
+using DevDates.Model.ViewModels;
 
 namespace DevDatesAPI.Controllers
 {
@@ -10,6 +12,7 @@ namespace DevDatesAPI.Controllers
     public class PhotoController : ControllerBase
     {
         private DevDatesDbContext _context;
+
         public PhotoController(DevDatesDbContext context)
         {
             _context = context;
@@ -26,10 +29,10 @@ namespace DevDatesAPI.Controllers
             }
 
             var photos = user.Resources
-                .Where(r => r.ResourceUri.EndsWith(".jpg") || r.ResourceUri.EndsWith(".jpeg") || r.ResourceUri.EndsWith(".png") || r.ResourceUri.EndsWith(".gif"))
+                .Where(r => r.ResourceUri != null && (r.ResourceUri.EndsWith(".jpg") || r.ResourceUri.EndsWith(".jpeg") || r.ResourceUri.EndsWith(".png") || r.ResourceUri.EndsWith(".gif")))
                 .Select(r => new Photo
-                {           
-                    Uri = r.ResourceUri,
+                {
+                    Uri = r.ResourceUri ?? string.Empty, 
                 })
                 .ToList();
 
@@ -38,21 +41,49 @@ namespace DevDatesAPI.Controllers
 
 
         [HttpDelete("photos/delete/{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
-            // TODO
+            var resource = _context.Resources.FirstOrDefault(r => r.Id == id);
+
+            if (resource == null)
+            {
+                return NotFound();
+            }
+
+            _context.Resources.Remove(resource);
+            _context.SaveChanges();
+
+            return NoContent();
         }
 
         [HttpPost("photos/post")]
-        public void Post()
+        public ActionResult<Photo> Post([FromBody] Resource resource)
         {
-            // TODO
+            _context.Resources.Add(resource);
+            _context.SaveChanges();
+
+            var photo = new Photo
+            {
+                Uri = resource.ResourceUri ?? string.Empty
+            };
+
+            return CreatedAtRoute("GetUserPhotos", new { userId = resource.Id }, photo);
         }
 
         [HttpPut("photos/put/{id}")]
-        public void put(int id)
+        public ActionResult Put(int id, [FromBody] Resource resource)
         {
-            // TODO
+            var existingResource = _context.Resources.FirstOrDefault(r => r.Id == id);
+
+            if (existingResource == null)
+            {
+                return NotFound();
+            }
+
+            existingResource.ResourceUri = resource.ResourceUri;
+            _context.SaveChanges();
+
+            return NoContent();
         }
     }
 }
