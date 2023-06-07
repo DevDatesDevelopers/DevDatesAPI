@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DevDates.DBModel\DevDates.DBModel.csproj" />
+  </ItemGroup>
+
 </Project>
