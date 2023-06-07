@@ -19,7 +19,7 @@ namespace DevDatesAPI
               .ForMember(dest => dest.Url, op => op.MapFrom(src => src.ResourceUri))
               .ForMember(dest => dest.Name, op => op.MapFrom(src => src.ResourceType.DisplayName));
 
-            CreateMap<DevDates.DBModel.Data.Models.Interest, DevDates.Model.ViewModels.Interest>()
+            CreateMap<DevDates.DBModel.Data.Models.Interest, DevDates.Model.ViewModels.ViewModelInterest>()
               .ForMember(dest => dest.DisplayName, op => op.MapFrom(src => src.DisplayName))
               .ForMember(dest => dest.Photos, op => op.MapFrom(src => src.Resources.Where(x => x.ResourceTypeId==1)));
 
@@ -34,7 +34,7 @@ namespace DevDatesAPI
               .ForMember(dest => dest.Bio, op => op.MapFrom(src => src.Bio))
               .ForMember(dest => dest.Interests, op => op.MapFrom(src => src.Interests));
               
-            CreateMap<DevDates.DBModel.Data.Models.User, DevDates.Model.ViewModels.User>()
+            CreateMap<DevDates.DBModel.Data.Models.User, DevDates.Model.ViewModels.ViewModelUser>()
               .ForMember(dest => dest.ConnectedServices, op => op.MapFrom(src => src.Resources.Where(x => x.ResourceTypeId==2)))
               .ForMember(dest => dest.DetailedInfo, op => op.MapFrom(src => src))
               .ForMember(dest => dest.ShortInfo, op => op.MapFrom(src => src));

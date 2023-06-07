@@ -83,7 +83,7 @@ namespace DevDatesAPI.Controllers
             return CreatedAtRoute("GetResourceType", new { id = rt.Id }, resourceType);
         }
 
-        [HttpPut("resourcetype/put/{id}")]
+       /* [HttpPut("resourcetype/put/{id}")]
         public IActionResult Put(int id, [FromBody] ResourcesType resourceType)
         {
             if (resourceType == null || id != resourceType.Id)
@@ -108,8 +108,8 @@ namespace DevDatesAPI.Controllers
             _context.SaveChanges();
 
             return NoContent();
-        }
-        public void Delete()
+        }*/
+       /* public void Delete()
         {
             // TODO
         }
@@ -124,6 +124,6 @@ namespace DevDatesAPI.Controllers
         public void put(int id)
         {
             // TODO
-        }
+        }*/
     }
 }

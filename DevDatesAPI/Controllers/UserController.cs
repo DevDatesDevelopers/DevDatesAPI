@@ -2,8 +2,8 @@ using DevDates.DBModel.Data;
 using DevDates.DBModel.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using DevDates.Model.ViewModels;
-using Interest = DevDates.Model.ViewModels.Interest;
-using User = DevDates.Model.ViewModels.User;
+using Interest = DevDates.Model.ViewModels.ViewModelInterest;
+using ViewModelUser = DevDates.Model.ViewModels.ViewModelUser;
 
 namespace DevDatesAPI.Controllers;
 
@@ -21,9 +21,9 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("short/{id}", Name = "GetShortUserInfo")]
-    public User Get(int id)
+    public ViewModelUser Get(int id)
     {
-        return _context.Users.Where(u => u.Id == id).Select(u => new DevDates.Model.ViewModels.User()
+        return _context.Users.Where(u => u.Id == id).Select(u => new DevDates.Model.ViewModels.ViewModelUser()
         {
             ShortInfo = new ShortUserInfo()
             {
@@ -47,9 +47,9 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("detailed/{id}", Name = "GetDetailedUserInfo")]
-    public User GetDetailedInfo(int id)
+    public ViewModelUser GetDetailedInfo(int id)
     {
-        return _context.Users.Where(u => u.Id == id).Select(u => new DevDates.Model.ViewModels.User()
+        return _context.Users.Where(u => u.Id == id).Select(u => new DevDates.Model.ViewModels.ViewModelUser()
         {
             ShortInfo = new ShortUserInfo()
             {
@@ -85,9 +85,9 @@ public class UserController : ControllerBase
     }
     
     [HttpGet("full/{id}", Name = "GetFullUserInfo")]
-    public User GetFullInfo(int id)
+    public ViewModelUser GetFullInfo(int id)
     {
-        return _context.Users.Where(u => u.Id == id).Select(u => new DevDates.Model.ViewModels.User()
+        return _context.Users.Where(u => u.Id == id).Select(u => new DevDates.Model.ViewModels.ViewModelUser()
         {
             ShortInfo = new ShortUserInfo()
             {
@@ -128,7 +128,7 @@ public class UserController : ControllerBase
     }
     
     [HttpPost("update/{id}", Name = "UpdateUserInfo")]
-    public void UpdateUser(int id,[FromBody] User user)
+    public void UpdateUser(int id,[FromBody] ViewModelUser user)
     {
         var dbUser = _context.Users.First(u => u.Id == id);
         dbUser.Name = user.ShortInfo.Name;

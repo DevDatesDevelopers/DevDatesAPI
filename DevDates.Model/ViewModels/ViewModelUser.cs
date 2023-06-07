@@ -3,7 +3,7 @@
 /// <summary>
 /// The User class which holds 3 properties: ShortInfo, DetailedInfo, and ConnectedServices
 /// </summary>
-public class User
+public class ViewModelUser
 {
     public ShortUserInfo ShortInfo { get; set; }
     public DetailedUserInfo DetailedInfo { get; set; }
@@ -28,5 +28,5 @@ public record ShortUserInfo
 public record DetailedUserInfo
 {
     public string Bio { get; set; }
-    public Interest[] Interests { get; set; }
+    public ViewModelInterest[] Interests { get; set; }
 }
