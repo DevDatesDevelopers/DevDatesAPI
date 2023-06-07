@@ -49,7 +49,7 @@ namespace DevDatesAPI.Controllers
         {
             if (preference != null)
             {
-                var newPreference = new Gender { DisplayName = preference.DisplayName };
+                var newPreference = new DevDates.DBModel.Data.Models.Gender { DisplayName = preference.DisplayName };
                 _context.Genders.Add(newPreference);
                 _context.SaveChanges();
             }

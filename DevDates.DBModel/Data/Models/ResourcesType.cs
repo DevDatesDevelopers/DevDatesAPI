@@ -15,5 +15,5 @@ public class ResourcesType
 
     public string? ModifiedBy { get; set; }
 
-    public virtual ICollection<Resource> Resources { get; } = new List<Resource>();
+    public virtual ICollection<Resource> Resources { get; set; } = new List<Resource>();
 }

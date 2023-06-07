@@ -17,9 +17,9 @@ namespace DevDatesAPI.Controllers
         }
 
         [HttpGet("resourcetypes", Name = "GetAllResourceTypes")]
-        public ResourceType[] GetAllResourceTypes()
+        public ResourcesType[] GetAllResourceTypes()
         {
-            return _context.ResourceTypes.Select(rt => new ResourceType()
+            return _context.ResourcesTypes.Select(rt => new ResourcesType()
             {
                 Id = rt.Id,
                 DisplayName = rt.DisplayName,
@@ -31,9 +31,9 @@ namespace DevDatesAPI.Controllers
         }
 
         [HttpGet("resourcetype/{id}", Name = "GetResourceType")]
-        public ResourceType GetResourceType(int id)
+        public ResourcesType GetResourceType(int id)
         {
-            return _context.ResourceTypes.Where(rt => rt.Id == id).Select(rt => new ResourceType()
+            return _context.ResourcesTypes.Where(rt => rt.Id == id).Select(rt => new ResourcesType()
             {
                 Id = rt.Id,
                 DisplayName = rt.DisplayName,
@@ -47,7 +47,7 @@ namespace DevDatesAPI.Controllers
         [HttpDelete("resourcetype/delete/{id}")]
         public IActionResult Delete(int id)
         {
-            var resourceType = _context.ResourceTypes.FirstOrDefault(rt => rt.Id == id);
+            var resourceType = _context.ResourcesTypes.FirstOrDefault(rt => rt.Id == id);
 
             if (resourceType == null)
             {
@@ -61,14 +61,14 @@ namespace DevDatesAPI.Controllers
         }
 
         [HttpPost("resourcetype/post")]
-        public IActionResult Post([FromBody] ResourceType resourceType)
+        public IActionResult Post([FromBody] ResourcesType resourceType)
         {
             if (resourceType == null)
             {
                 return BadRequest();
             }
 
-            var rt = new ResourceType
+            var rt = new ResourcesType
             {
                 DisplayName = resourceType.DisplayName,
                 Created = resourceType.Created,
@@ -77,21 +77,21 @@ namespace DevDatesAPI.Controllers
                 Resources = resourceType.Resources
             };
 
-            _context.ResourceTypes.Add(rt);
+            _context.ResourcesTypes.Add(rt);
             _context.SaveChanges();
 
             return CreatedAtRoute("GetResourceType", new { id = rt.Id }, resourceType);
         }
 
         [HttpPut("resourcetype/put/{id}")]
-        public IActionResult Put(int id, [FromBody] ResourceType resourceType)
+        public IActionResult Put(int id, [FromBody] ResourcesType resourceType)
         {
             if (resourceType == null || id != resourceType.Id)
             {
                 return BadRequest();
             }
 
-            var rt = _context.ResourceTypes.FirstOrDefault(rt => rt.Id == id);
+            var rt = _context.ResourcesTypes.FirstOrDefault(rt => rt.Id == id);
 
             if (rt == null)
             {
@@ -104,7 +104,7 @@ namespace DevDatesAPI.Controllers
             rt.ModifiedBy = resourceType.ModifiedBy;
             rt.Resources = resourceType.Resources;
 
-            _context.ResourceTypes.Update(rt);
+            _context.ResourcesTypes.Update(rt);
             _context.SaveChanges();
 
             return NoContent();
