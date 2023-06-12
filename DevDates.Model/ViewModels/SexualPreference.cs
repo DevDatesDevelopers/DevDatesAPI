@@ -5,6 +5,7 @@
     /// </summary>
     public class SexualPreference
     {
+        public int Id { get; set; }
         public string DisplayName { get; init; }
         public Photo Photo { get; init; }
     }
