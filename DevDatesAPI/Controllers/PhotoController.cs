@@ -19,7 +19,7 @@ namespace DevDatesAPI.Controllers
         }
 
         [HttpGet("{userId}/photos", Name = "GetUserPhotos")]
-        public ActionResult<List<Photo>> GetUserPhotos(int userId)
+        public ActionResult<List<Photo>> GetUserPhotos(string userId)
         {
             var user = _context.Users.FirstOrDefault(u => u.Id == userId);
 

@@ -21,7 +21,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("short/{id}", Name = "GetShortUserInfo")]
-    public ViewModelUser Get(int id)
+    public ViewModelUser Get(string id)
     {
         return _context.Users.Where(u => u.Id == id).Select(u => new DevDates.Model.ViewModels.ViewModelUser()
         {
@@ -47,7 +47,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("detailed/{id}", Name = "GetDetailedUserInfo")]
-    public ViewModelUser GetDetailedInfo(int id)
+    public ViewModelUser GetDetailedInfo(string id)
     {
         return _context.Users.Where(u => u.Id == id).Select(u => new DevDates.Model.ViewModels.ViewModelUser()
         {
@@ -85,7 +85,7 @@ public class UserController : ControllerBase
     }
     
     [HttpGet("full/{id}", Name = "GetFullUserInfo")]
-    public ViewModelUser GetFullInfo(int id)
+    public ViewModelUser GetFullInfo(string id)
     {
         return _context.Users.Where(u => u.Id == id).Select(u => new DevDates.Model.ViewModels.ViewModelUser()
         {
@@ -128,7 +128,7 @@ public class UserController : ControllerBase
     }
     
     [HttpPost("update/{id}", Name = "UpdateUserInfo")]
-    public void UpdateUser(int id,[FromBody] ViewModelUser user)
+    public void UpdateUser(string id,[FromBody] ViewModelUser user)
     {
         var dbUser = _context.Users.First(u => u.Id == id);
         dbUser.Name = user.ShortInfo.Name;
@@ -137,7 +137,7 @@ public class UserController : ControllerBase
     }
     
     [HttpPost("addPhoto/{id}", Name = "AddPhoto")]
-    public void AddPhoto(int id,[FromBody] Photo photo)
+    public void AddPhoto(string id,[FromBody] Photo photo)
     {
         var dbUser = _context.Users.First(u => u.Id == id);
         var photoResource = new Resource()
