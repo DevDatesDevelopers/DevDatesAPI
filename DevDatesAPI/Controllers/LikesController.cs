@@ -17,13 +17,13 @@ namespace DevDatesAPI.Controllers
         }
 
         [HttpGet("user/{userId}", Name = "GetUserLikes")]
-        public Like[] GetUserLikes(int userId)
+        public Like[] GetUserLikes(string userId)
         {
             return _context.Likes.Where(l => l.LikerId == userId).ToArray();
         }
 
         [HttpPost("user/{userId}/like/{likedUserId}")]
-        public IActionResult LikeUser(int userId, int likedUserId)
+        public IActionResult LikeUser(string userId, string likedUserId)
         {
             // Проверяваме дали вече има лайк от потребителя на likedUserId
             var existingLike = _context.Likes.FirstOrDefault(l => l.LikerId == userId && l.LikedId == likedUserId);
@@ -47,7 +47,7 @@ namespace DevDatesAPI.Controllers
         }
 
         [HttpDelete("user/{userId}/like/{likedUserId}")]
-        public IActionResult UnlikeUser(int userId, int likedUserId)
+        public IActionResult UnlikeUser(string userId, string likedUserId)
         {
             // Намираме лайк-а за да го изтрием
             var likeToDelete = _context.Likes.FirstOrDefault(l => l.LikerId == userId && l.LikedId == likedUserId);

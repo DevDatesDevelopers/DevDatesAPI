@@ -77,8 +77,8 @@ class Program
     static void InsertUserPreferences(DevDates.DBModel.Data.DevDatesDbContext context)
     {
         List<DevDates.DBModel.Data.Models.UsersPreference> interests = new List<DevDates.DBModel.Data.Models.UsersPreference>();
-        interests.Add(new DevDates.DBModel.Data.Models.UsersPreference { UserId = 1 , GenderId = 1});
-        interests.Add(new DevDates.DBModel.Data.Models.UsersPreference { UserId = 2, GenderId = 2});
+        interests.Add(new DevDates.DBModel.Data.Models.UsersPreference { UserId = "1" , GenderId = 1});
+        interests.Add(new DevDates.DBModel.Data.Models.UsersPreference { UserId = "2", GenderId = 2});
 
         foreach (var item in interests)
         {
